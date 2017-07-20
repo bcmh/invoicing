@@ -6,18 +6,10 @@
     "slim/twig-view": "^2.1",
     "monolog/monolog": "^1.22",
     "oscarotero/psr7-middlewares": "^3.19",
-    "cloudmanaged/oauth2-freeagent": "^1.0",
-    "cloudmanaged/freeagent-php": "dev-master",
     "league/commonmark": "^0.15.3",
     "calcinai/xero-php": "^1.5",
     "vlucas/phpdotenv": "^2.4"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/thisislawatts/freeagent-php"
-    }
-  ],
   "autoload": {
     "psr-4": {
       "BCMH\\": "src/"
