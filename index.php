@@ -58,7 +58,9 @@ $container['view'] = function ($container) {
         "COMPANY_VAT_NUMBER",
         "COMPANY_ACCOUNT_NAME",
         "COMPANY_ACCOUNT_NUMBER",
-        "COMPANY_SORT_CODE"
+        "COMPANY_SORT_CODE",
+        "COMPANY_IBAN",
+        "COMPANY_SWIFT"
     ] as $global ) {
         $view->getEnvironment()->addGlobal( strtolower($global), getenv( $global ) );
     }
