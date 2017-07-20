@@ -1,6 +1,8 @@
 {
   "name": "bcmh/invoicing",
   "description": "Output Invoices as HTML then a PDF",
+  "version": "1.0.0",
+  "license": "MIT",
   "require": {
     "slim/slim": "^3.0",
     "slim/twig-view": "^2.1",
