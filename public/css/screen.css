@@ -1,0 +1,281 @@
+/*
+Reset
+ */
+
+@font-face {
+  font-family: "Univers LT W01 45 Light";
+  src: url("../fonts/2b61512c-069e-4111-bb23-9a918f94a74d.eot?#iefix");
+  src: url("../fonts/2b61512c-069e-4111-bb23-9a918f94a74d.eot?#iefix")
+      format("eot"),
+    url("../fonts/4487d7ba-1656-47e3-aaf0-b3a0054fb3b8.woff2") format("woff2"),
+    url("../fonts/ecf89914-1896-43f6-a0a0-fe733d1db6e7.woff") format("woff"),
+    url("../fonts/7628f343-8c36-4707-9559-8feb86c0462f.ttf") format("truetype"),
+    url("../fonts/11b816e7-d678-48dd-bc75-560de9c19049.svg#11b816e7-d678-48dd-bc75-560de9c19049")
+      format("svg");
+}
+@font-face {
+  font-family: "Univers LT W02_55 Roman";
+  src: url("../fonts/f1999e78-ab0c-4adc-a7dc-51e567e6cf5e.eot?#iefix");
+  src: url("../fonts/f1999e78-ab0c-4adc-a7dc-51e567e6cf5e.eot?#iefix")
+      format("eot"),
+    url("../fonts/4c3360e9-d022-446a-8571-1decf6bc06c3.woff2") format("woff2"),
+    url("../fonts/4d1e8df3-6c45-428d-a522-84c8a6a4e533.woff") format("woff"),
+    url("../fonts/3c9abc50-742c-46dd-8af4-c50866112be0.ttf") format("truetype"),
+    url("../fonts/c6310aa0-a8a1-4afc-a747-091de3970894.svg#c6310aa0-a8a1-4afc-a747-091de3970894")
+      format("svg");
+}
+
+* {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Univers LT W02_55 Roman', sans-serif;
+  padding: 5.6vw 12.4vw 5.6vw 5.6vw;
+  line-height: 1.35;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+main h1,
+main h2 {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  text-transform: uppercase;
+  padding: 1.15em 0 2.95em;
+  margin: 3em 0 2.6em !important;
+}
+
+main h1:first-child {
+  margin-top: 0 !important;
+  border-top: 0;
+  padding-top: 0;
+}
+
+h3,
+.h3 {
+  display: block;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h3:after {
+  content: ':';
+}
+
+ul,
+ol,
+li,
+p,
+main * + * {
+  margin-bottom: 1.35em;
+}
+
+small {
+  font-size: 0.75em;
+  line-height: 1.5;
+  display: block;
+  text-transform: uppercase;
+}
+
+header {
+  margin-bottom: 4em;
+}
+
+header > div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.logoblock img {
+  width: 8em;
+}
+
+.vcard span,
+.vcard a {
+  display: block;
+}
+
+.vcard {
+	padding-left: 33.3%;
+}
+
+.vcard > div {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+
+main a {
+  xborder-bottom: 1px solid;
+}
+
+main ul li {
+  margin-bottom: 0.675em;
+}
+
+hr {
+  border-width: 0 0 1px 0;
+  border-style: dotted;
+  margin: 2.6em 0 4.05em;
+}
+
+/**
+ * Smaller screens
+ */
+
+@media screen and (max-width: 42em) {
+  header > .logoblock,
+  header > .vcard,
+  .vcard > div {
+    width: 100%;
+    margin: 0;
+  }
+
+  header > .logoblock,
+  .vcard > div {
+    margin-bottom: 1.35em;
+  }
+
+  main {
+    padding: 2.7em 0 0;
+  }
+}
+
+/**
+ * Editable Components
+ */
+
+span[contenteditable] {
+  background: rgba(255, 246, 158, 1);
+  padding: .25em;
+  margin: -.25em -.1em -.25em -.25em;
+  position: relative;
+  z-index: -1;
+}
+
+span[contenteditable]:focus,
+span[contenteditable]:hover {
+  cursor: pointer;
+  outline: none;
+  background: rgba(255, 248, 53, 1);
+  z-index: 999;
+}
+
+small:first-of-type {
+  margin-top: 1em;
+}
+
+table {
+  width: 100%;
+  width: calc(100% + 30px) !important;
+  margin: -15px -15px 5em;
+  border-spacing: 15px;
+}
+
+table td {
+  vertical-align: top;
+  border-top: 1px solid;
+  padding: 1em 0 1.5em;
+}
+
+.totals td {
+  border-top: 3px solid;
+}
+
+/**
+ * Invoice document
+ */
+
+.vcard {
+  background: #fff;
+}
+
+time {
+  display: block;
+}
+
+main {
+  display: block;
+  padding: 0 0 0;
+  margin-top: 0;
+}
+
+.invoice-po-reference {
+  margin: 0 0 2em;
+}
+
+.invoice-footer {
+  padding: 1em 1em 1.5em;
+  font-size: 9pt;
+  background: yellow;
+}
+
+/**
+ * Atoms
+ */
+
+.bt:before {
+  content: ' ';
+  height: 0;
+  display: block;
+  border-top: 1px solid;
+  margin: 1.75rem 0 .75rem;
+}
+
+.bt:first-child:before {
+  margin-top: 0;
+}
+
+div[class*="col"] {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
+
+.col-left {
+  width: 30%;
+  padding-right: 1.2em;
+}
+
+.col-right {
+  width: 70%;
+}
+
+.invoice-item {
+}
+
+.invoice-item td:first-child,
+.invoice-item td:last-child {
+  width: 25%;
+}
+
+.debug {
+  display: none;
+}
+
+.bookmark {
+  border: 1px solid #999;
+  display: inline-block;
+  margin: 1em 0 0;
+  padding: .75em 1.5em .5em;
+  text-align: center;
+  text-indent: -.25em;
+  border-radius: .25em;
+  line-height: 1;
+  background: #f6f6f6;
+}

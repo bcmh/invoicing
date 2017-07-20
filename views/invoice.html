@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+<!--
+  BBBBBBBBBBBBBBBBBBB  CCCCCCCCCCCCCCCCCCC        MMMMMMMMMM             HHHHHHHHHM
+  B                 B  C                 C      MM          MM         HH          HH
+  B                 B  C                 C     M              M       H              H
+  B     BBBBBBB     B  C      CCCCC      C    M  M          M  M     H    H      H    H
+  B     BB    BB    B  C    CC     CC    C   M   MM        MM   M   H     H      H     H
+  B     BB    BB    B  C   CC            C   M   M M      M M   M   H     H      H     H
+  B     BBBBBBB     B  C   CC            C   M   M  M    M  M   M   H     HHHHHHHH     H
+  B     BB    BB    B  C   CC            C   M   M  M    M  M   M   H     H      H     H
+  B     BB    BB    B  C    CC     CC    C   M   M   M  M   M   M   H     H      H     H
+  B     BBBBBBB     B  C      CCCCC      C    M  M    MM    M  M     H    H      H    H
+  B                 B  C                 C     MM             M       H             HH
+  B                 B  C                 C       MM         MM         HH          HH
+  BBBBBBBBBBBBBBBBBBB  CCCCCCCCCCCCCCCCCCC         MMMMMMMMM             HHHHHHHHHH
+
+  Bravo Charlie Mike Hotel
+  http://bcmh.co.uk
+-->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+	<title>BCMH_INV_#{{ invoice.reference }}</title>
+  <link rel="stylesheet" href="/public/css/screen.css?v=20170703-1818"/>
+  {% if pdf %}
+  <link rel="stylesheet" href="/public/css/pdf.css"/>
+  {% endif %}
+
+  <style>
+    @media print {
+
+      @page {
+        margin: 0mm;
+        padding: 0mm;
+        size: A4 portrait;
+      }
+
+      header {
+        position: fixed;
+        right: 29mm;
+        top: 12mm;
+        left: 12mm;
+      }
+
+        header .col-left {
+          width:
+        }
+
+      body {
+        font-size: 9pt;
+        line-height: 1.5;
+        padding: 0;
+        margin: 61.75mm 29mm 6mm 12mm;
+      }
+
+      .invoice-footer {
+        font-size: 7pt;
+      }
+
+      .col-left {
+        padding-right: 8mm;
+      }
+    }
+
+    .invoice-project {
+      margin-bottom: 1.35em;
+    }
+
+    .invoice-description ul {
+          list-style: none;
+          padding: 0;
+      }
+
+      .invoice-description ul li {
+        margin-bottom: 0;
+        position: relative;
+        padding: 0 0 0 1em;
+      }
+
+      .invoice-description ul li:before {
+        content: '\2013';
+        display: inline-block;
+        margin-right: .5em;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .invoice {
+        max-width: 54em;
+      }
+
+      .table__listing th {
+        text-align: left;
+        border-top: 1px solid;
+        padding-top: 1em;
+      }
+
+      .table__listing td:first-child {
+        width: 50%;
+      }
+
+      .table__listing .listing-item,
+      .table__listing .listing-item td {
+        border-top: 0;
+        padding: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      .listing-item:last-of-type td {
+        background: red;
+      }
+
+  </style>
+</head>
+<body>
+	<article class="invoice">
+<header>
+    <div class="col-left">
+      <h1 class="logoblock">
+        Bravo. Charlie. Mike. Hotel
+      </h1>
+      <h2>Brand, Design &amp; Digital</h2>
+    </div><!--
+ --><div class="col-right">
+      <div class="vcard">
+        <div class="adr">
+          <span>{{ company.address1 }}</span>
+          <span>{{ company.address3 }}</span>
+          <span>{{ company.city }} {{ company.postcode }}</span>
+        </div><!--
+     --><div class="contact">
+          <a href="tel:00442038574800">{{ company.phone_number }}</a>
+          <a href="mailto:{{ company.contact_email }}">{{ company.contact_email }}</a>
+          <a href="{{ company.website }}" title="{{ company.name }}">bcmh.co.uk</a>
+        </div>
+      </div>
+    </div>
+  </header><!-- /header -->
+
+  <main>
+    <div class="col-left">
+      <h3 class="bt">Invoice</h3>
+      <p>#{{ invoice.reference }}</p>
+
+      <h3 class="h3 bt">Date / Tax Point</h3>
+      {{ invoice.dated_on | date }}
+
+    </div><!--
+ --><div class="col-right">
+      <h3 class="bt">FAO</h3>
+      <p>
+      {{ invoice.contact.first_name }} {{ invoice.contact.last_name }}<br/>
+      {{ invoice.contact.organisation_name }}
+      </p>
+
+      <p>
+      {{ invoice.contact.address.addressline1 | br | raw }}
+      {{ invoice.contact.address.addressline2 | br | raw }}
+      {{ invoice.contact.address.addressline3 | br | raw }}
+      {{ invoice.contact.address.city | br | raw }}
+      {{ invoice.contact.address.region }} {{ invoice.contact.address.postalcode }}
+      </p>
+    </div>
+    <section role="main">
+      <div class="col-left">
+        {% if invoice.po_reference %}
+        <div class="invoice-po-reference">
+          <span class="h3 bt">PO Number:</span>
+          {{ invoice.po_reference | br | raw }}
+        </div>
+        {% endif %}
+        {% if invoice.reference == invoice.reference %}
+        {% else %}
+          <h3 class="bt">Ref</h3>
+          {{ invoice.reference }}
+        {% endif %}
+      </div><!--
+   --><div class="col-right">
+        {% if invoice.project %}
+          <div class="invoice-project">
+            <h3 class="bt">Project</h3>
+            {{ invoice.project.name }}
+          </div>
+        {% endif %}
+
+      {% if invoice.comments %}
+      <div class="invoice-description">
+        <h3 class="bt mb0">Description</h3>
+        {{ invoice.comments | md | raw }}
+        {% for row in invoice.invoice_items %}
+          {% if row.item_type == 'Comment' %}
+          {{ row.description | md | raw }}
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if invoice.isListing %}
+      <table class="table__listing">
+        <tr>
+          <th><h3>Title</h3></th>
+          {% if invoice.total_tax %}
+          <th><h3>Fee</h3></th>
+          <th>VAT@20%<br></th>
+          {% else %}
+          <th colspan="2"><h3>Fee</h3></th>
+          {% endif %}
+        </tr>
+        {% for row in invoice.invoice_items %}
+          <tr class="invoice-item listing-item " data-type="{{ row.item_type }}" data-unit="{{ row.item}}">
+            <td>
+              {{ row.description | nl2br | raw }}
+            </td>
+            <td>
+              {{ row.lineamount | money | raw }}
+            </td>
+            <td>
+              {% if row.taxamount > 0 %}
+                {{ row.taxamount | money | raw}}
+              {% else %}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <!--  Invoice Subtotal Excluding VAT -->
+          <td>
+            <h3>Subtotal</h3>
+          </td>
+          <td colspan="2">
+            {{ invoice.sub_total | money | raw }}
+          </td>
+        </tr>
+        <tr>
+          <!-- Total Taxable Amount on Invoice -->
+          <td colspan="2">
+            {% if invoice.total_tax %}
+            VAT@20%
+            {% else %}
+            VAT@0%
+            {% endif %}
+          </td>
+          <td>{{ invoice.total_tax | money | raw }}</td>
+        </tr>
+        <tr class="totals">
+          <td>
+            <h3>Total</h3>
+          </td>
+          <td colspan="2">{{ invoice.total_value | money | raw }}</td>
+        </tr>
+      </table>
+      {% else %}
+      <table>
+        {% for row in invoice.invoice_items %}
+          {% if row.item_type == 'Comment' %}
+          {% else %}
+          <tr class="invoice-item" data-type="{{ row.item_type }}" data-unit="{{ row.item}}">
+            <td>
+              {% if row.item_type == 'Discount' %}
+                <span class="h3">{{ row.item_type }}:</span>
+              {% endif %}
+              {% if row.item_type == 'Days' %}
+                <span class="h3">Title:</span>
+                {{ row.quantity }} {{ row.item_type }}
+              {% else %}
+                <span class="h3">Title:</span>
+                {{ row.description | nl2br | raw }}
+              {% endif %}
+            </td>
+            <td>
+            <h3>FEE</h3>
+              {{ row.price | money | raw }}
+            </td>
+            <td>
+            {% if row.tax > 0 %}
+              VAT@20%<br>
+              {{ row.tax | money | raw}}
+            {% else %}
+              {% if row.price > 0 %}
+                VAT@0%
+              {% else %}
+                &ndash;
+              {% endif %}
+            {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        <tr>
+          <!--  Invoice Subtotal Excluding VAT -->
+          <td>
+            <h3>Subtotal</h3>
+          </td>
+          <td colspan="2">
+            {{ invoice.net_value | money | raw }}
+          </td>
+        </tr>
+        <tr>
+          <!-- Total Taxable Amount on Invoice -->
+          <td colspan="2">VAT@20%
+          </td>
+          <td>{{ invoice.total_tax | money | raw }}</td>
+        </tr>
+        <tr class="totals">
+          <td>
+            <h3>Total</h3>
+          </td>
+          <td colspan="2">{{ invoice.total_value | money | raw }}</td>
+        </tr>
+      </table>
+      {% endif %}
+
+
+      <footer class="invoice-footer">
+        PLEASE NOTE OUR UPDATED BANK DETAILS<br/><br/>
+        VAT Reg #: {{ company_vat_number }}<br/>
+        Account details for BACs payments:<br/>
+        ACCOUNT NAME: {{ company_account_name }}<br/>
+        ACCOUNT #: {{ company_account_number }}<br/>
+        SORT CODE: {{ company_sort_code }}
+      </footer>
+
+      <small>Payment terms: 30 Days from Issue Date/Tax Point</small>
+      </div>
+
+    </section>
+  </main>
+
+  </article>
+</body>
+</html>

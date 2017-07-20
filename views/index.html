@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block body %}
+<div class="col-left">
+
+</div><!--
+ --><div class="col-right">
+
+    <h1 class="h3 bt">Invoices {{ invoices | count }}</h1>
+    <table>
+        <tr>
+            <td>
+                Reference
+            </td>
+            <td>Status</td>
+            <td>Total</td>
+            <td></td>
+        </tr>
+        {% for invoice in invoices %}
+        <tr>
+            <td>
+                <a href="/invoice/{{ invoice.id }}">
+              #{{ invoice.reference }}
+                </a>
+            </td>
+            <td>
+                {{ invoice.status }}
+            </td>
+            <td class="ta-r">
+                {{ invoice.total_value | money | raw }}
+            </td>
+            <td>
+                <a href="https://go.xero.com/AccountsReceivable/View.aspx?InvoiceID={{ invoice.id }}" target="_blank">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!--<p>
+        Drag and drop this bookmarklet, to switch between here and invoices on Freegent.<br/>
+        <a class="bookmark" href="javascript:(function() %7B%0A var destination %3D window.location.hostname %3D%3D%3D 'invoices.bcmh.build' %3F '%2F%2Fbravocharliemikehotel.freeagent.com%2Finvoices' %3A '%2F%2Finvoices.bcmh.build%2Finvoice'%3B%0A    console.log(destination)%3B%0A    var invoiceUrl %3D destination %2B '%2F' %2B window.location.pathname.split('%2F').pop()%3B%0A    window.open(invoiceUrl%2C '_invoicify')%3B%0A%7D)()%3B">💰</a>
+    </p>-->
+</div>
+<!-- .col-right -->
+{% endblock %}

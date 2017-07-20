@@ -1,0 +1,53 @@
+/**
+/////////////////////
+//
+//  PDF Only StyleRules
+//
+/////////////////////
+*/
+
+@page {
+	size: A4 portrait;
+}
+
+@page :left {
+}
+
+@page :left {
+  margin: 61.75mm 29mm 6mm 12mm;
+}
+
+@page :right {
+  margin: 61.75mm 29mm 6mm 12mm;
+}
+
+* {
+	font-size: 9pt;
+}
+
+body {
+	padding: 0; /* 1. Removes viewport based padding */
+}
+
+/* 2. Fixes header to top of each page */
+header {
+	position: fixed;
+	width: 100%;
+	top: -49mm;
+}
+
+	.vcard {
+		background: #fff;
+		margin-top: -1mm;
+	}
+
+	table {
+		width: 100% !important;
+		border-spacing: 0;
+	}
+
+	time {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}

@@ -1,0 +1,8 @@
+*.pdf
+vendor
+/public.key
+/private.key
+/data
+/.env
+certs
+/public/fonts

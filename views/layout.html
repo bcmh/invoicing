@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ldir="ltr" lang="en-US" class="no-js">
+<head>
+<!--
+  BBBBBBBBBBBBBBBBBBB  CCCCCCCCCCCCCCCCCCC        MMMMMMMMMM             HHHHHHHHHM
+  B                 B  C                 C      MM          MM         HH          HH
+  B                 B  C                 C     M              M       H              H
+  B     BBBBBBB     B  C      CCCCC      C    M  M          M  M     H    H      H    H
+  B     BB    BB    B  C    CC     CC    C   M   MM        MM   M   H     H      H     H
+  B     BB    BB    B  C   CC            C   M   M M      M M   M   H     H      H     H
+  B     BBBBBBB     B  C   CC            C   M   M  M    M  M   M   H     HHHHHHHH     H
+  B     BB    BB    B  C   CC            C   M   M  M    M  M   M   H     H      H     H
+  B     BB    BB    B  C    CC     CC    C   M   M   M  M   M   M   H     H      H     H
+  B     BBBBBBB     B  C      CCCCC      C    M  M    MM    M  M     H    H      H    H
+  B                 B  C                 C     MM             M       H             HH
+  B                 B  C                 C       MM         MM         HH          HH
+  BBBBBBBBBBBBBBBBBBB  CCCCCCCCCCCCCCCCCCC         MMMMMMMMM             HHHHHHHHHH
+
+  Bravo Charlie Mike Hotel
+  http://bcmh.co.uk
+-->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+	<title>BCMH – Invoicing</title>
+  <link rel="stylesheet" href="public/css/screen.css"/>
+</head>
+<body>
+	<header>
+    <div class="col-left">
+      <h1 class="logoblock">
+        <img src="/public/images/BCMH_monogram.png" alt="Bravo Charlie Mike Hotel"/>
+      </h1>
+    </div><!--
+ --><div class="col-right">
+      <div class="vcard">
+        <div class="adr">
+          <span>{{ company.address1 }}</span>
+          <span>{{ company.address3 }}</span>
+          <span>{{ company.town }} {{ company.postcode }}</span>
+        </div><!--
+     --><div class="contact">
+          <a href="tel:00442038574800">020 3857 4800</a>
+          <a href="mailto:{{ company.contact_email }}">{{ company.contact_email }}</a>
+          <a href="{{ company.website }}" title="{{ company.name }}">bcmh.co.uk</a>
+        </div>
+      </div>
+    </div>
+  </header><!-- /header -->
+
+  <main>
+    {% block body %}
+    {% endblock %}
+  </main>
+</body>
+</html>
