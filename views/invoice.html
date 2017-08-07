@@ -153,10 +153,7 @@
       <h3 class="bt">FAO</h3>
       <p>
       {{ invoice.contact.first_name }} {{ invoice.contact.last_name }}<br/>
-      {{ invoice.contact.organisation_name }}
-      </p>
-
-      <p>
+      {{ invoice.contact.organisation_name | br | raw }}
       {{ invoice.contact.address.addressline1 | br | raw }}
       {{ invoice.contact.address.addressline2 | br | raw }}
       {{ invoice.contact.address.addressline3 | br | raw }}
