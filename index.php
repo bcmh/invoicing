@@ -18,7 +18,8 @@ session_start();
 
 $app = new Slim\App([
     'settings' => [
-        'displayErrorDetails' => getenv('SLIM_DISPLAY_ERROR_DETAILS') === "true"
+        'debug' => true,
+        'displayErrorDetails' => true //getenv('SLIM_DISPLAY_ERROR_DETAILS') === "true"
     ]
 ]);
 
@@ -204,6 +205,8 @@ $app->get('/invoice/[{id}/]', function ($req, $res, $args) {
 
     $invoice = $this->xero->loadByGUID('Accounting\\Invoice', $args['id']);
     //$company = (new Company($this->freeagent))->getGeneralCompanyInformation()->toArray();
+
+    var_dump($invoice);
 
     return $this->view->render($res, 'invoice.html', [
         'invoice' => (new BCMH\InvoiceObject($invoice)),
